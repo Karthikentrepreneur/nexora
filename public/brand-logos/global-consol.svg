@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 80" role="img" aria-labelledby="gcTitle gcDesc">
+  <title id="gcTitle">Global Consol logo</title>
+  <desc id="gcDesc">Stylised globe icon with the words Global Consol</desc>
+  <rect x="2" y="2" width="236" height="76" rx="18" fill="#112540" />
+  <g fill="#1FB6E0" opacity="0.85">
+    <circle cx="48" cy="40" r="22" fill="none" stroke="#1FB6E0" stroke-width="4" />
+    <path d="M30 40h36" stroke="#1FB6E0" stroke-width="3" stroke-linecap="round" />
+    <path d="M48 22c6 6 9 12 9 18s-3 12-9 18c-6-6-9-12-9-18s3-12 9-18z" fill="none" stroke="#1FB6E0" stroke-width="3" />
+  </g>
+  <text x="132" y="46" text-anchor="middle" fill="#ffffff" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-weight="700" font-size="26">GLOBAL</text>
+  <text x="140" y="64" fill="#8fbad9" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="22" font-weight="600">CONSOL</text>
+</svg>

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 80" role="img" aria-labelledby="title desc">
+  <title id="title">Global Gateway Logistics logo</title>
+  <desc id="desc">Stylised initials GGL inside a rounded rectangle</desc>
+  <defs>
+    <linearGradient id="gglGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0B4870" />
+      <stop offset="100%" stop-color="#1FB6E0" />
+    </linearGradient>
+  </defs>
+  <rect x="2" y="2" width="236" height="76" rx="18" fill="url(#gglGradient)" />
+  <text x="50%" y="54%" text-anchor="middle" fill="#ffffff" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-weight="700" font-size="36">GGL</text>
+  <text x="50%" y="74%" text-anchor="middle" fill="#d6f6ff" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="14" letter-spacing="4">LOGISTICS</text>
+</svg>

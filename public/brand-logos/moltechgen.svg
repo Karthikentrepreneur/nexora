@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 80" role="img" aria-labelledby="moltechgenTitle moltechgenDesc">
+  <title id="moltechgenTitle">MoltechGen logo</title>
+  <desc id="moltechgenDesc">Circular gradient emblem with MoltechGen wordmark</desc>
+  <rect x="2" y="2" width="236" height="76" rx="18" fill="#061a1c" />
+  <defs>
+    <radialGradient id="mgRad" cx="40" cy="40" r="28" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#53f9dd" />
+      <stop offset="100%" stop-color="#1a8d8f" />
+    </radialGradient>
+  </defs>
+  <circle cx="44" cy="40" r="24" fill="url(#mgRad)" />
+  <path d="M44 20v40" stroke="#012b2d" stroke-width="3" stroke-linecap="round" opacity="0.35" />
+  <text x="148" y="46" text-anchor="middle" fill="#ffffff" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="26" font-weight="600">MOLTECHGEN</text>
+  <text x="152" y="64" text-anchor="middle" fill="#8ad7d7" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="14" letter-spacing="4">BIOFUELS</text>
+</svg>

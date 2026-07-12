@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 80" role="img" aria-labelledby="hxTitle hxDesc">
+  <title id="hxTitle">Hai Xun Logistics logo</title>
+  <desc id="hxDesc">Wave icon with the words Hai Xun Logistics</desc>
+  <rect x="2" y="2" width="236" height="76" rx="18" fill="#041f3a" />
+  <path d="M28 56c10-16 24-24 42-24s32 8 42 24" fill="none" stroke="#1FB6E0" stroke-width="4" stroke-linecap="round" />
+  <path d="M28 40c10-10 24-16 42-16s32 6 42 16" fill="none" stroke="#26e0c0" stroke-width="3" stroke-linecap="round" opacity="0.75" />
+  <text x="140" y="46" text-anchor="middle" fill="#ffffff" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="26" font-weight="600">HAI XUN</text>
+  <text x="150" y="64" fill="#9ddfed" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="16" letter-spacing="2">LOGISTICS</text>
+</svg>

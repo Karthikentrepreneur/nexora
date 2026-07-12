@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 80" role="img" aria-labelledby="citygnTitle citygnDesc">
+  <title id="citygnTitle">CityGn logo</title>
+  <desc id="citygnDesc">City skyline silhouette with CityGn wordmark</desc>
+  <rect x="2" y="2" width="236" height="76" rx="18" fill="#102033" />
+  <g fill="#1FB6E0">
+    <rect x="28" y="32" width="10" height="24" />
+    <rect x="42" y="24" width="10" height="32" />
+    <rect x="56" y="36" width="10" height="20" />
+    <rect x="70" y="28" width="10" height="28" />
+  </g>
+  <text x="150" y="46" text-anchor="middle" fill="#ffffff" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="28" font-weight="700">CityGn</text>
+  <text x="150" y="64" text-anchor="middle" fill="#9ddfed" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="15" letter-spacing="3">DISTRIBUTION</text>
+</svg>

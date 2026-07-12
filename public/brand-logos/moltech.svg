@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 80" role="img" aria-labelledby="moltechTitle moltechDesc">
+  <title id="moltechTitle">Moltech logo</title>
+  <desc id="moltechDesc">Leaf shaped energy emblem with Moltech wordmark</desc>
+  <rect x="2" y="2" width="236" height="76" rx="18" fill="#0d281b" />
+  <path d="M42 20c-10 12-12 24 0 36 12-12 10-24 0-36z" fill="#3bd187" />
+  <path d="M42 22c6 10 6 18 0 28" stroke="#d3ffe5" stroke-width="3" stroke-linecap="round" fill="none" />
+  <text x="140" y="46" text-anchor="middle" fill="#ffffff" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="28" font-weight="600">MOLTECH</text>
+  <text x="150" y="64" text-anchor="middle" fill="#9aeab9" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="15" letter-spacing="4">ENERGY</text>
+</svg>
