@@ -13,7 +13,7 @@ const Main = () => {
 
     return (
         <div className='main-page-area'>
-            {!isHome && <Header3></Header3>}
+            {!isHome && <Header3 variant="header-transparent"></Header3>}
             <Outlet></Outlet>
             <Footer1></Footer1>
         </div>

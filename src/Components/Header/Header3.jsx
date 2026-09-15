@@ -1,24 +1,19 @@
 import { useEffect, useState } from 'react';
 import { Link } from "react-router";
 import Nav from './Nav';
-import { getAboutDetails } from '../../utils/aboutData';
 
 export default function Header3({ variant }) {
   const [mobileToggle, setMobileToggle] = useState(false);
   const [isSticky, setIsSticky] = useState('');
   const [prevScrollPos, setPrevScrollPos] = useState(0);
   const [hasScrolled, setHasScrolled] = useState(false);
-  const [customLogo, setCustomLogo] = useState('');
 
-  const isHero = variant === 'header-transparent' && !hasScrolled;
-
-  // On dark background (hero) use whitebg.png (white text)
-  // On white background (scrolled or subpages) use blackbg.png (black text)
-  const logoSrc = isHero 
-    ? (customLogo || '/whitebg.png') 
-    : '/blackbg.png';
-  const textColor = isHero ? '#ffffff' : '#0F172A';
-  const bgColor = hasScrolled ? '#ffffff' : (isHero ? 'transparent' : '#ffffff');
+  // In initial header (before scroll), ALWAYS show whitebg.png
+  // When scrolled down (white sticky background), show blackbg.png
+  const isInitial = !hasScrolled;
+  const logoSrc = isInitial ? '/whitebg.png' : '/blackbg.png';
+  const textColor = isInitial ? '#ffffff' : '#0F172A';
+  const bgColor = hasScrolled ? '#ffffff' : 'transparent';
 
   const headerStyle = {
     color: textColor,
@@ -27,19 +22,8 @@ export default function Header3({ variant }) {
   };
 
   useEffect(() => {
-    getAboutDetails().then((data) => {
-      if (data && data.logo_white_src && isHero) {
-        setCustomLogo(data.logo_white_src);
-      } else if (data && data.logo_src && !isHero) {
-        setCustomLogo(data.logo_src);
-      }
-    });
-  }, [isHero]);
-
-  useEffect(() => {
     const handleScroll = () => {
       const currentScrollPos = window.scrollY;
-      const heroHeight = document.querySelector('.hero-section')?.offsetHeight || 100;
 
       if (currentScrollPos > prevScrollPos && currentScrollPos > 120) {
         setIsSticky('cs-gescout_sticky');
@@ -50,10 +34,10 @@ export default function Header3({ variant }) {
       }
 
       setPrevScrollPos(currentScrollPos);
-      setHasScrolled(currentScrollPos > heroHeight * 0.1 || currentScrollPos > 50);
+      setHasScrolled(currentScrollPos > 60);
     };
 
-    handleScroll();
+    setHasScrolled(window.scrollY > 60);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, [prevScrollPos]);
@@ -83,12 +67,28 @@ export default function Header3({ variant }) {
           padding: 4px 0;
         }
         header.cs_site_header {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          z-index: 101;
           transition: background-color 0.35s ease, box-shadow 0.35s ease;
         }
         header.cs_site_header.scrolled {
+          position: fixed;
           background-color: #ffffff !important;
           box-shadow: 0 4px 20px rgba(15, 23, 42, 0.08);
           border-bottom: 1px solid rgba(220, 38, 38, 0.1);
+        }
+        header.cs_site_header:not(.scrolled) .cs-munu_toggle span,
+        header.cs_site_header:not(.scrolled) .cs-munu_toggle span:before,
+        header.cs_site_header:not(.scrolled) .cs-munu_toggle span:after {
+          background-color: #ffffff !important;
+        }
+        header.cs_site_header.scrolled .cs-munu_toggle span,
+        header.cs_site_header.scrolled .cs-munu_toggle span:before,
+        header.cs_site_header.scrolled .cs-munu_toggle span:after {
+          background-color: #0F172A !important;
         }
         .header-btn .theme-btn {
           background: linear-gradient(135deg, #DC2626 0%, #FF5722 50%, #F97316 100%) !important;
@@ -119,7 +119,8 @@ export default function Header3({ variant }) {
             display: block;
             font-weight: 600;
           }
-          .cs_nav .cs_nav_list li a:hover {
+          .cs_nav .cs_nav_list li a:hover,
+          .cs_nav .cs_nav_list li a.active-nav-link {
             color: #DC2626 !important;
           }
         }
@@ -128,17 +129,17 @@ export default function Header3({ variant }) {
       <header
         style={headerStyle}
         className={`cs_site_header header_style_2 header_style_2_2 cs_style_1 header_sticky_style1 
-          ${isHero ? variant : ''} 
+          ${variant || ''} 
           cs_sticky_header cs_site_header_full_width 
           ${mobileToggle ? 'cs_mobile_toggle_active' : ''} 
           ${isSticky || ''} 
-          ${hasScrolled ? 'scrolled' : (!isHero ? 'scrolled' : '')}`}
+          ${hasScrolled ? 'scrolled' : ''}`}
       >
         <div className="cs_main_header">
           <div className="container">
             <div className="cs_main_header_in">
               
-              {/* Left: Nexora360 Logo (whitebg.png on dark hero, blackbg.png on white background) */}
+              {/* Left: Nexora360 Logo (whitebg.png in initial header, blackbg.png on scroll) */}
               <div className="cs_main_header_left">
                 <Link className="cs_site_branding" to="/" aria-label="Nexora360 Home">
                   <img src={logoSrc} alt="Nexora360 Global Solutions" />
@@ -155,7 +156,7 @@ export default function Header3({ variant }) {
                   >
                     <span></span>
                   </span>
-                  <Nav setMobileToggle={setMobileToggle} linkColor={isHero ? '#ffffff' : '#0F172A'} />
+                  <Nav setMobileToggle={setMobileToggle} linkColor={textColor} />
                 </div>
               </div>
 
@@ -180,9 +181,6 @@ export default function Header3({ variant }) {
           </div>
         </div>
       </header>
-
-      {/* Spacing offset for fixed header on subpages */}
-      {!isHero && <div className="cs_site_header_spacing_140" style={{ height: '96px' }}></div>}
     </div>
   );
 }
