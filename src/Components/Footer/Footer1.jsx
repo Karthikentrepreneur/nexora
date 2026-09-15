@@ -47,7 +47,7 @@ const Footer1 = () => {
           <div className="footer-col brand-col">
             <Link to="/" className="footer-logo-link">
               <img
-                src="/nexora360-logo-white.svg"
+                src="/whitebg.png"
                 alt="Nexora360 Global Solutions"
                 className="footer-logo"
               />
@@ -200,9 +200,9 @@ const Footer1 = () => {
           }
         }
         .footer-logo {
-          height: 48px;
+          height: clamp(54px, 5.5vw, 70px);
           width: auto;
-          margin-bottom: 12px;
+          margin-bottom: 14px;
         }
         .footer-tagline {
           font-size: 16px;

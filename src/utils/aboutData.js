@@ -9,8 +9,8 @@ const DEFAULT_ABOUT = {
   our_reach_desc: 'Built to support businesses across industries and geographies with flexible operating models from single processes to full GCCs.',
   expertise_title: 'Technology, People & Process',
   expertise_desc: 'Digital automation & AI-enabled solutions, experienced professionals, and structured repeatable ways of working.',
-  logo_src: '/nexora360-logo.svg',
-  logo_white_src: '/nexora360-logo-white.svg',
+  logo_src: '/blackbg.png',
+  logo_white_src: '/whitebg.png',
   banner_src: '/aboutbg.png',
 };
 

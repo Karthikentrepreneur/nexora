@@ -12,12 +12,13 @@ export default function Header3({ variant }) {
 
   const isHero = variant === 'header-transparent' && !hasScrolled;
 
-  // Logo + color swap on scroll
+  // On dark background (hero) use whitebg.png (white text)
+  // On white background (scrolled or subpages) use blackbg.png (black text)
   const logoSrc = isHero 
-    ? (customLogo || '/nexora360-logo-white.svg') 
-    : '/nexora360-logo.svg';
-  const textColor = isHero ? '#fff' : '#0F172A';
-  const bgColor = hasScrolled ? '#ffffff' : 'transparent';
+    ? (customLogo || '/whitebg.png') 
+    : '/blackbg.png';
+  const textColor = isHero ? '#ffffff' : '#0F172A';
+  const bgColor = hasScrolled ? '#ffffff' : (isHero ? 'transparent' : '#ffffff');
 
   const headerStyle = {
     color: textColor,
@@ -29,7 +30,7 @@ export default function Header3({ variant }) {
     getAboutDetails().then((data) => {
       if (data && data.logo_white_src && isHero) {
         setCustomLogo(data.logo_white_src);
-      } else if (data && data.logo_src) {
+      } else if (data && data.logo_src && !isHero) {
         setCustomLogo(data.logo_src);
       }
     });
@@ -49,7 +50,7 @@ export default function Header3({ variant }) {
       }
 
       setPrevScrollPos(currentScrollPos);
-      setHasScrolled(currentScrollPos > heroHeight * 0.1 || currentScrollPos > 60);
+      setHasScrolled(currentScrollPos > heroHeight * 0.1 || currentScrollPos > 50);
     };
 
     handleScroll();
@@ -61,8 +62,9 @@ export default function Header3({ variant }) {
     <div>
       <style>{`
         .cs_site_branding img {
-          height: clamp(38px, 4.5vw, 54px);
+          height: clamp(50px, 5.5vw, 68px);
           width: auto;
+          max-width: 220px;
           display: block;
           object-fit: contain;
           transition: height 0.3s ease, transform 0.3s ease;
@@ -72,12 +74,13 @@ export default function Header3({ variant }) {
         }
         .cs_sticky_header .cs_site_branding img,
         .cs-gescout_sticky .cs_site_branding img {
-          height: clamp(34px, 4vw, 48px);
+          height: clamp(44px, 4.8vw, 58px);
         }
         .cs_main_header_left .cs_site_branding {
           display: inline-flex;
           align-items: center;
           line-height: 0;
+          padding: 4px 0;
         }
         header.cs_site_header {
           transition: background-color 0.35s ease, box-shadow 0.35s ease;
@@ -129,13 +132,13 @@ export default function Header3({ variant }) {
           cs_sticky_header cs_site_header_full_width 
           ${mobileToggle ? 'cs_mobile_toggle_active' : ''} 
           ${isSticky || ''} 
-          ${hasScrolled ? 'scrolled' : ''}`}
+          ${hasScrolled ? 'scrolled' : (!isHero ? 'scrolled' : '')}`}
       >
         <div className="cs_main_header">
           <div className="container">
             <div className="cs_main_header_in">
               
-              {/* Left: Nexora360 Logo */}
+              {/* Left: Nexora360 Logo (whitebg.png on dark hero, blackbg.png on white background) */}
               <div className="cs_main_header_left">
                 <Link className="cs_site_branding" to="/" aria-label="Nexora360 Home">
                   <img src={logoSrc} alt="Nexora360 Global Solutions" />
@@ -152,7 +155,7 @@ export default function Header3({ variant }) {
                   >
                     <span></span>
                   </span>
-                  <Nav setMobileToggle={setMobileToggle} linkColor={textColor} />
+                  <Nav setMobileToggle={setMobileToggle} linkColor={isHero ? '#ffffff' : '#0F172A'} />
                 </div>
               </div>
 
@@ -179,7 +182,7 @@ export default function Header3({ variant }) {
       </header>
 
       {/* Spacing offset for fixed header on subpages */}
-      {!isHero && <div className="cs_site_header_spacing_140" style={{ height: '90px' }}></div>}
+      {!isHero && <div className="cs_site_header_spacing_140" style={{ height: '96px' }}></div>}
     </div>
   );
 }
