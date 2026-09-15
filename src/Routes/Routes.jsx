@@ -1,7 +1,11 @@
 import { createBrowserRouter } from "react-router";
 import Main from "../Layout/Main";
-import Home from "../Pages/Home3"; // renamed to Home
+import Home from "../Pages/Home3";
 import AboutPage from "../Pages/AboutPage";
+import ValuesPage from "../Pages/ValuesPage";
+import CapabilitiesPage from "../Pages/CapabilitiesPage";
+import AdvantagePage from "../Pages/AdvantagePage";
+import ContactPage from "../Pages/ContactPage";
 import DestinationPage from "../Pages/DestinationPage";
 import DestinationDetailsPage from "../Pages/DestinationDetailsPage";
 import TourPage from "../Pages/TourPage";
@@ -10,7 +14,6 @@ import ActivitiesPage from "../Pages/ActivitiesPage";
 import ActivitiesDetailsPage from "../Pages/ActivitiesDetailsPage";
 import TeamPage from "../Pages/TeamPage";
 import TeamDetailsPage from "../Pages/TeamDetailsPage";
-import ContactPage from "../Pages/ContactPage";
 import BlogGrid from "../Pages/BlogGrid";
 import BlogDetailsPage from "../Pages/BlogDetailsPage";
 import BlogSidebarPage from "../Pages/BlogSidebarPage";
@@ -33,11 +36,35 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        Component: Home, // Home3 but now used as Home
+        Component: Home,
       },
       {
         path: "about",
         Component: AboutPage,
+      },
+      {
+        path: "values",
+        Component: ValuesPage,
+      },
+      {
+        path: "capabilities",
+        Component: CapabilitiesPage,
+      },
+      {
+        path: "the-advantage",
+        Component: AdvantagePage,
+      },
+      {
+        path: "advantage",
+        Component: AdvantagePage,
+      },
+      {
+        path: "contact",
+        Component: ContactPage,
+      },
+      {
+        path: "our-business-verticals",
+        Component: CapabilitiesPage, // updated to Capabilities
       },
       {
         path: "destination",
@@ -56,10 +83,6 @@ export const router = createBrowserRouter([
         Component: TourDetailsPage,
       },
       {
-        path: "our-business-verticals",
-        Component: ActivitiesPage,
-      },
-      {
         path: "global-presence",
         Component: GlobalPresencePage,
       },
@@ -74,10 +97,6 @@ export const router = createBrowserRouter([
       {
         path: "team/team-details",
         Component: TeamDetailsPage,
-      },
-      {
-        path: "contact",
-        Component: ContactPage,
       },
       {
         path: "investor-relations",
@@ -103,14 +122,14 @@ export const router = createBrowserRouter([
         path: "software-development",
         Component: SoftwareDevelopmentPage,
       },
-        {
-          path: "renewable-energy",
-          Component: RenewableEnergyPage,
-        },
-        {
-          path: "corporate-sustainability",
-          Component: CorporateSustainabilityPage,
-        },
+      {
+        path: "renewable-energy",
+        Component: RenewableEnergyPage,
+      },
+      {
+        path: "corporate-sustainability",
+        Component: CorporateSustainabilityPage,
+      },
       {
         path: "blog",
         Component: BlogGrid,

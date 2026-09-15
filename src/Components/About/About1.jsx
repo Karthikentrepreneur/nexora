@@ -62,7 +62,7 @@ const About1 = () => {
     >
       <style>{`
         :root {
-          --accent:#26B6E0;
+          --accent:#FF5722;
           --ink:#0E0F2C;
           --muted:#444;
         }
@@ -120,7 +120,7 @@ const About1 = () => {
           display: flex;
           align-items: center;
           justify-content: center;
-          box-shadow: 0 4px 10px rgba(38,182,224,.35);
+          box-shadow: 0 4px 10px rgba(255,87,34,.35);
           transform: translateY(2px);
         }
 
@@ -244,8 +244,8 @@ const About1 = () => {
             <div className="col-12 col-xl-7 about-image-col d-flex">
               <div className="about-photo-wrap w-100">
                 <img
-                  src={aboutData?.banner_src || "/team1.jpg"}
-                  alt="1 Global Enterprises Team"
+                  src={aboutData?.banner_src || "/aboutbg.png"}
+                  alt="Nexora360 Global Solutions Team"
                   className="about-photo"
                   loading="eager"
                 />
@@ -256,7 +256,7 @@ const About1 = () => {
             <div className="col-12 col-xl-5 about-text-col">
               <div className="about-content pe-xl-4 ps-xl-2 px-3 px-xl-0">
                 <div className="section-title">
-                  <h2>{aboutData?.main_title || "1 Global Enterprises"}</h2>
+                  <h2>{aboutData?.main_title || "Nexora360 Global Solutions"}</h2>
                 </div>
 
                 <div className="about-area mt-3">

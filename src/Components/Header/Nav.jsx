@@ -1,45 +1,51 @@
-import React, { useEffect, useState } from 'react';
-import DropDown from './DropDown';
-import { Link } from "react-router";
-import { getNavbarVerticals } from '../../utils/navbarVerticalData';
+import React from 'react';
+import { NavLink, useLocation } from "react-router";
 
 export default function Nav({ setMobileToggle, linkColor }) {
-  const [verticals, setVerticals] = useState([]);
+  const location = useLocation();
+  const isHome = location.pathname === "/";
 
-  useEffect(() => {
-    getNavbarVerticals().then(data => {
-      if (data) {
-        // Only show active verticals in the menu
-        setVerticals(data.filter(item => Number(item.is_active) === 1));
+  const handleNavClick = (anchorId) => {
+    setMobileToggle(false);
+    if (isHome && anchorId) {
+      const el = document.getElementById(anchorId);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
       }
-    });
-  }, []);
+    }
+  };
+
+  const navItems = [
+    { label: "Home", to: "/", anchor: "hero" },
+    { label: "About", to: "/about", anchor: "about" },
+    { label: "Values", to: "/values", anchor: "values" },
+    { label: "Capabilities", to: "/capabilities", anchor: "capabilities" },
+    { label: "The Advantage", to: "/the-advantage", anchor: "advantage" },
+    { label: "Contact", to: "/contact", anchor: "contact" },
+  ];
 
   return (
-    <ul className="cs_nav_list fw-medium">
-      <li>
-        <Link to="/" style={{ color: linkColor || '#fff' }}>Home</Link>
-      </li>
-
-      <li>
-        <Link
-          to="/about"
-          onClick={() => setMobileToggle(false)}
-          style={{ color: linkColor || '#fff' }}
-        >
-          About Us
-        </Link>
-      </li>
-
-      <li>
-        <Link
-          to="/our-business-verticals"
-          onClick={() => setMobileToggle(false)}
-          style={{ color: linkColor || '#fff' }}
-        >
-          Business Verticals
-        </Link>
-      </li>
+    <ul className="cs_nav_list fw-medium d-flex align-items-center gap-4 list-unstyled mb-0">
+      {navItems.map((item) => (
+        <li key={item.to} className="position-relative">
+          <NavLink
+            to={item.to}
+            onClick={() => handleNavClick(item.anchor)}
+            style={({ isActive }) => ({
+              color: isActive ? '#FF5722' : (linkColor || '#0F172A'),
+              fontWeight: isActive ? '700' : '600',
+              fontSize: '15.5px',
+              textDecoration: 'none',
+              transition: 'color 0.2s ease',
+              padding: '6px 0',
+              position: 'relative'
+            })}
+            className={({ isActive }) => (isActive ? 'active-nav-link' : '')}
+          >
+            {item.label}
+          </NavLink>
+        </li>
+      ))}
     </ul>
   );
 }

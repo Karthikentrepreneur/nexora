@@ -1,42 +1,61 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import BreadCumb from '../Components/Common/BreadCumb';
-import { getNavbarVerticals } from '../utils/navbarVerticalData';
+import { Link } from 'react-router';
+import { ArrowRight, Bot, Cpu, Code2 } from 'lucide-react';
 
 const SoftwareDevelopmentPage = () => {
-  const [verticalData, setVerticalData] = useState(null);
-
-  useEffect(() => {
-    getNavbarVerticals().then((data) => {
-      if (data) {
-        const matched = data.find((item) => item.url_path === '/software-development');
-        if (matched) {
-          setVerticalData(matched);
-        }
-      }
-    });
-  }, []);
-
-  const title = verticalData?.title || "Software Development";
-  const imageSrc = verticalData?.image_src || "/software.png";
-  const contentText = verticalData?.content || "Our software development team creates innovative solutions that drive digital transformation. From web applications to complex enterprise systems, we build scalable products tailored to our clients' needs.\n\nWe follow modern development practices and emphasize collaboration, ensuring every project meets rigorous quality standards. Our developers are fluent in a variety of technologies, enabling rapid prototyping and reliable deployment.\n\nBeyond delivery, we provide ongoing support and optimization to keep software running smoothly. Our goal is to empower businesses with tools that enhance productivity and unlock new opportunities.";
+  const title = "IT, Software & AI Automation";
+  const imageSrc = "/aboutbg.png";
+  const contentText = "At Nexora360 Global Solutions, our technology and software engineering pods build scalable digital platforms, automated business workflows, and custom AI copilots. We bring enterprise technology together with operational execution under one unified roof.\n\nFrom modern cloud architectures and full-stack web platforms to Robotic Process Automation (RPA) and intelligent document processing, our dedicated engineers operate as an agile extension of your technical team.\n\nWe provide continuous DevOps, infrastructure monitoring, API development, and data engineering so you can launch faster and operate with complete reliability.";
 
   const paragraphs = contentText.split(/\n+/).map(p => p.trim()).filter(Boolean);
 
   return (
-    <div>
+    <div className="nexora-vertical-page">
       <BreadCumb bgimg="/aboutbg.png" Title={title} />
-      <section className="py-5">
-        <div className="container">
-          <img
-            src={imageSrc}
-            alt={title}
-            className="mb-6 w-full h-60 object-cover rounded"
-          />
-          {paragraphs.map((p, idx) => (
-            <p key={idx}>{p}</p>
-          ))}
+      <section className="py-5 bg-white">
+        <div className="container py-lg-4">
+          <div className="row align-items-center g-5 mb-5">
+            <div className="col-lg-6">
+              <img
+                src={imageSrc}
+                alt={title}
+                className="img-fluid rounded-4 shadow-sm border border-danger border-opacity-25"
+              />
+            </div>
+            <div className="col-lg-6">
+              <span className="badge-tag-red mb-2 d-inline-block">TECH &amp; AUTOMATION</span>
+              <h2 className="display-6 fw-bold mb-3 text-slate-900">
+                Software &amp; <span className="text-gradient-nexora">AI-Enabled Solutions</span>
+              </h2>
+              {paragraphs.map((p, idx) => (
+                <p key={idx} className="text-slate-600 mb-3" style={{ fontSize: '15.5px', lineHeight: '1.7' }}>
+                  {p}
+                </p>
+              ))}
+              <div className="mt-4">
+                <Link to="/contact" className="btn-nexora-primary">
+                  <span>Inquire about IT Pods</span>
+                  <ArrowRight size={16} />
+                </Link>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
+
+      <style>{`
+        .badge-tag-red {
+          font-size: 11px;
+          font-weight: 800;
+          color: #DC2626;
+          background: rgba(220, 38, 38, 0.1);
+          border: 1px solid rgba(220, 38, 38, 0.2);
+          padding: 4px 12px;
+          border-radius: 9999px;
+          letter-spacing: 1px;
+        }
+      `}</style>
     </div>
   );
 };

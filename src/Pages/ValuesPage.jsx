@@ -1,22 +1,22 @@
 import React from 'react';
 import BreadCumb from '../Components/Common/BreadCumb';
-import NexoraAbout from '../Components/Nexora/NexoraAbout';
+import NexoraValues from '../Components/Nexora/NexoraValues';
 import NexoraCommitment from '../Components/Nexora/NexoraCommitment';
 import useSEO from '../hooks/useSEO';
 
-const AboutPage = () => {
-  useSEO('about');
+const ValuesPage = () => {
+  useSEO('values');
 
   return (
-    <div className="nexora-about-page">
+    <div className="nexora-values-page">
       <BreadCumb
         bgimg="/aboutbg.png"
-        Title="About Nexora360"
+        Title="Our Core Values"
       />
-      <NexoraAbout />
+      <NexoraValues />
       <NexoraCommitment />
     </div>
   );
 };
 
-export default AboutPage;
+export default ValuesPage;

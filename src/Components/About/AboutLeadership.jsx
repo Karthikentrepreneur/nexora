@@ -67,7 +67,7 @@ const AboutLeadership = () => {
         .founder-caption span {
           display: block;
           font-size: 15px;
-          color: #26B6E0;
+          color: #FF5722;
           font-weight: 500;
         }
 
@@ -84,12 +84,12 @@ const AboutLeadership = () => {
           height: 60px;
           min-width: 60px;
           border-radius: 50%;
-          background-color: #26B6E0;
+          background-color: #FF5722;
           display: flex;
           align-items: center;
           justify-content: center;
           z-index: 1;
-          box-shadow: 0 4px 10px rgba(38,182,224,0.35);
+          box-shadow: 0 4px 10px rgba(255,87,34,0.35);
         }
         .about-items .icon svg { width: 28px; height: 28px; color: #fff; }
 
@@ -102,8 +102,8 @@ const AboutLeadership = () => {
           height: calc(100% - 30px);
           background: repeating-linear-gradient(
             to bottom,
-            #26B6E0,
-            #26B6E0 4px,
+            #FF5722,
+            #FF5722 4px,
             transparent 4px,
             transparent 8px
           );

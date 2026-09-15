@@ -1,31 +1,31 @@
 // Utility to manage admin login state, credentials, and contact inquiries with Hostinger MySQL API and System Logs
 
-const CREDENTIALS_KEY = '__1ge_admin_credentials';
-const INQUIRIES_KEY = '__1ge_contact_inquiries';
-const LOGS_KEY = '__1ge_admin_logs';
+const CREDENTIALS_KEY = '__nexora360_admin_credentials';
+const INQUIRIES_KEY = '__nexora360_contact_inquiries';
+const LOGS_KEY = '__nexora360_admin_logs';
 const API_URL = '/api/index.php';
 
 const DEFAULT_CREDENTIALS = {
-  username: 'admin@1ge.com',
-  password: '1global@enterprises',
+  username: 'admin@nexora360global.com',
+  password: 'nexora360@global',
 };
 
 const DEFAULT_INQUIRIES = [
   {
     id: 'inq_1',
-    name: 'John Doe',
-    email: 'john@example.com',
-    subject: 'Partnership Inquiry',
-    message: 'Hello, we are interested in partnering with 1 Global Enterprises for shipping services across Europe. Could you please share your catalog and rate sheets?',
+    name: 'Sarah Jenkins',
+    email: 'sarah.jenkins@acmecorp.com',
+    subject: 'Capability Inquiry: Global Capability Centre (GCC)',
+    message: 'Hello, we are interested in establishing a dedicated Global Capability Centre (GCC) with Nexora360. Could you please share details on your BOT model and timeline?',
     date: '2026-06-21T10:30:00Z',
     status: 'unread',
   },
   {
     id: 'inq_2',
-    name: 'Sarah Smith',
-    email: 'sarah.smith@logistics.com',
-    subject: 'Software ERP Integration',
-    message: 'We saw your new software-driven tracking solutions. Is it possible to integrate your APIs with our existing custom WMS? Let us know the next steps.',
+    name: 'David Reynolds',
+    email: 'david.r@cloudscale.io',
+    subject: 'Capability Inquiry: AI & Automation Services',
+    message: 'We are looking to outsource our back-office processing and integrate automated IDP pipelines. Let us know when we can schedule an introductory discussion.',
     date: '2026-06-22T14:15:00Z',
     status: 'read',
   },

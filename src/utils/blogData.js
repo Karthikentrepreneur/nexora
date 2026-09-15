@@ -4,37 +4,37 @@ import { addLog, isApiAvailable } from './adminData';
 const DEFAULT_BLOGS = [
   {
     id: '1',
-    img: '/blog1.png',
-    title: '1GE Expands Operations Across 16+ Countries',
+    img: '/aboutbg.png',
+    title: 'Nexora360 Unveils Integrated 360° Capability Ecosystem',
     date: '15',
-    month: 'Aug',
-    author: 'Corporate Comms',
-    tag: 'Global Expansion',
-    content: '1 Global Enterprises (1GE) has officially expanded its network footprint, setting up logistics hubs in over 16 countries globally. This strategic expansion is aimed at streamlining supply chain channels and reinforcing 1GE\'s commitment to reliable cross-border services.',
+    month: 'Jan',
+    author: 'Corporate Communications',
+    tag: 'Ecosystem Launch',
+    content: 'Nexora360 Global Solutions Private Limited brings GCC, BPO, KPO, digital marketing, sales, customer experience, IT, HR, finance, and AI & automation together under one unified operating model, eliminating vendor fragmentation.',
   },
   {
     id: '2',
-    img: '/blog2.png',
-    title: 'Driving Sustainable Logistics & Renewable Solutions',
-    date: '02',
-    month: 'Sep',
-    author: 'Sustainability Team',
-    tag: 'Sustainability',
-    content: 'With climate concerns taking center stage, 1GE is incorporating green initiatives across shipping and distribution. Our investment in solar-powered warehouses and electric delivery fleets marks a major step towards reducing carbon footprints and promoting renewable energy solutions.',
+    img: '/aboutbg.png',
+    title: 'Why Enterprises Are Replacing Fragmented Vendors with Unified Pods',
+    date: '28',
+    month: 'Feb',
+    author: 'Strategy Pod',
+    tag: 'Operating Model',
+    content: 'Businesses shouldn’t need multiple partners for multiple functions. Discover how unified reporting, integrated security governance, and single-point accountability deliver superior SLA outcomes.',
   },
   {
     id: '3',
-    img: '/blog3.png',
-    title: 'Empowering Clients With Technology-Driven Solutions',
-    date: '22',
-    month: 'Oct',
-    author: 'Innovation Desk',
-    tag: 'Technology',
-    content: '1GE has rolled out its latest custom ERP tracking tool, enabling business clients to track freight in real-time, view sustainability metrics, and optimize dispatch schedules. This tech-first approach aims to minimize delays and enhance operational transparency.',
+    img: '/aboutbg.png',
+    title: 'Next-Generation AI & Robotic Automation in Modern Global Services',
+    date: '12',
+    month: 'Mar',
+    author: 'AI & Automation Lab',
+    tag: 'AI & Automation',
+    content: 'Embracing emerging technologies, AI, and digital process automation creates smarter solutions and future-ready businesses with measurable outcomes, not just reduced costs.',
   },
 ];
 
-const LOCAL_STORAGE_KEY = '__1ge_blogs';
+const LOCAL_STORAGE_KEY = '__nexora360_blogs';
 const API_URL = '/api/index.php';
 
 // Helper to make API calls to the Hostinger PHP MySQL gateway

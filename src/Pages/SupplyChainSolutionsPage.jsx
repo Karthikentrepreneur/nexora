@@ -1,42 +1,61 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import BreadCumb from '../Components/Common/BreadCumb';
-import { getNavbarVerticals } from '../utils/navbarVerticalData';
+import { Link } from 'react-router';
+import { ArrowRight, CheckCircle2 } from 'lucide-react';
 
 const SupplyChainSolutionsPage = () => {
-  const [verticalData, setVerticalData] = useState(null);
-
-  useEffect(() => {
-    getNavbarVerticals().then((data) => {
-      if (data) {
-        const matched = data.find((item) => item.url_path === '/supply-chain-solutions');
-        if (matched) {
-          setVerticalData(matched);
-        }
-      }
-    });
-  }, []);
-
-  const title = verticalData?.title || "Supply Chain Solutions";
-  const imageSrc = verticalData?.image_src || "/image1.png";
-  const contentText = verticalData?.content || "1 Global Enterprises invests in and builds high-performing logistics and technology businesses that power global trade. Our portfolio spans 16 countries, covering every major segment of the supply chain — including freight forwarding, warehousing, distribution, and digital logistics infrastructure. Through strategic ownership and operational expertise, we support our group companies in driving innovation, operational excellence, and sustainable growth. Our focus is on strengthening global connectivity and creating long-term value across the supply chain landscape.";
+  const title = "Business & Capability Solutions";
+  const imageSrc = "/aboutbg.png";
+  const contentText = "Nexora360 Global Solutions builds and operates high-performing capability teams that power modern business operations. Our integrated ecosystem brings GCC, BPO, KPO, digital marketing, sales, customer experience, IT, HR, finance and AI & automation together under one unified operating model.\n\nFrom supporting a single business function to managing complete outsourced operations, we design solutions around the unique requirements of every client. Our teams operate as an extension of your organization — dedicated resources, shared services, project-based teams, or complete outsourced functions.";
 
   const paragraphs = contentText.split(/\n+/).map(p => p.trim()).filter(Boolean);
 
   return (
-    <div>
+    <div className="nexora-vertical-page">
       <BreadCumb bgimg="/aboutbg.png" Title={title} />
-      <section className="py-5">
-        <div className="container">
-          <img
-            src={imageSrc}
-            alt={title}
-            className="mb-6 w-full h-60 object-cover rounded"
-          />
-          {paragraphs.map((p, idx) => (
-            <p key={idx}>{p}</p>
-          ))}
+      <section className="py-5 bg-white">
+        <div className="container py-lg-4">
+          <div className="row align-items-center g-5 mb-5">
+            <div className="col-lg-6">
+              <img
+                src={imageSrc}
+                alt={title}
+                className="img-fluid rounded-4 shadow-sm border border-danger border-opacity-25"
+              />
+            </div>
+            <div className="col-lg-6">
+              <span className="badge-tag-red mb-2 d-inline-block">NEXORA360 CAPABILITY PODS</span>
+              <h2 className="display-6 fw-bold mb-3 text-slate-900">
+                End-to-End <span className="text-gradient-nexora">Capability Engineering</span>
+              </h2>
+              {paragraphs.map((p, idx) => (
+                <p key={idx} className="text-slate-600 mb-3" style={{ fontSize: '15.5px', lineHeight: '1.7' }}>
+                  {p}
+                </p>
+              ))}
+              <div className="mt-4">
+                <Link to="/capabilities" className="btn-nexora-primary">
+                  <span>Explore all 13 capabilities</span>
+                  <ArrowRight size={16} />
+                </Link>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
+
+      <style>{`
+        .badge-tag-red {
+          font-size: 11px;
+          font-weight: 800;
+          color: #DC2626;
+          background: rgba(220, 38, 38, 0.1);
+          border: 1px solid rgba(220, 38, 38, 0.2);
+          padding: 4px 12px;
+          border-radius: 9999px;
+          letter-spacing: 1px;
+        }
+      `}</style>
     </div>
   );
 };

@@ -59,7 +59,7 @@ const Contact = () => {
                                         Our Address
                                     </h3>
                                     <p>
-                                        2464 Royal Ln. Mesa, New Jersey 45463.
+                                        ED-305, Bollineni Hillside Phase 2, Perumbakkam, Chennai 600126
                                     </p>
                                 </div>
                             </div>
@@ -73,10 +73,10 @@ const Contact = () => {
                                 </div>
                                 <div className="content">
                                     <h3>
-                                        <a href="mailto:info@tripco.com">info@tripco.com</a>
+                                        <a href="mailto:info@nexora360global.com">info@nexora360global.com</a>
                                     </h3>
                                     <p>
-                                        Email us anytime for anykind <br/> ofquety.
+                                        Email us anytime for any capability inquiry.
                                     </p>
                                 </div>
                             </div>
@@ -90,10 +90,10 @@ const Contact = () => {
                                 </div>
                                 <div className="content">
                                     <h3>
-                                        <a href="tel:Hot+208-666-0112">Hot:+208-666-0112</a>
+                                        <a href="tel:+919655680234">+91 96556 80234</a>
                                     </h3>
                                     <p>
-                                        Call us any kind suppor,we will wait for it.
+                                        Direct line for strategic capability partnerships.
                                     </p>
                                 </div>
                             </div>

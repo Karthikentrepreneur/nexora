@@ -1,19 +1,12 @@
 import React, { useEffect, useState } from "react";
-import loadBackgroudImages from "../Common/loadBackgroudImages";
-import { getAboutDetails } from "../../utils/aboutData";
+import { Link } from "react-router";
 import { getFooterDetails } from "../../utils/footerData";
+import { Mail, Phone, MapPin, ArrowRight, ShieldCheck } from "lucide-react";
 
 const Footer1 = () => {
-  const [logoSrc, setLogoSrc] = useState("/1global1.png");
   const [footerData, setFooterData] = useState(null);
 
   useEffect(() => {
-    loadBackgroudImages();
-    getAboutDetails().then((data) => {
-      if (data && data.logo_src) {
-        setLogoSrc(data.logo_src);
-      }
-    });
     getFooterDetails().then((data) => {
       if (data) {
         setFooterData(data);
@@ -21,141 +14,312 @@ const Footer1 = () => {
     });
   }, []);
 
-  const addressText = footerData?.address || "1 Global Enterprises Pte Ltd\n#03-01, Keppel Distripark,\n511 Kampong Bahru Road,\nSingapore 099447";
-  const emailText = footerData?.email || "info@1ge.sg";
-  const phone1Text = footerData?.phone_1 || "+65 69080838";
-  const phone2Text = footerData?.phone_2 || "+65 69080849";
-  const phone3Text = footerData?.phone_3 || "+65 98177292";
-  const copyrightText = footerData?.copyright || "© 1 Global Enterprises, All Rights Reserved.";
-  const linkedinUrl = footerData?.linkedin_url || "https://www.linkedin.com/company/1-global-enterprises/";
-
-  const handleCopy = (num) => {
-    if (navigator && navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(num);
-      alert(`Copied: ${num}`);
-    } else {
-      // Fallback for older browsers
-      const ta = document.createElement("textarea");
-      ta.value = num;
-      document.body.appendChild(ta);
-      ta.select();
-      try { document.execCommand("copy"); alert(`Copied: ${num}`); }
-      finally { document.body.removeChild(ta); }
-    }
-  };
+  const addressText = footerData?.address || "ED-305, Bollineni Hillside Phase 2,\nPerumbakkam, Chennai 600126";
+  const emailText = footerData?.email || "info@nexora360global.com";
+  const phoneText = footerData?.phone_1 || "+91 96556 80234";
+  const copyrightText = footerData?.copyright || "© 2026 Nexora360 Global Solutions Private Limited";
 
   return (
     <footer className="footer-section" aria-label="Website Footer">
       <div className="container">
-        <div className="footer-main">
-          {/* Column 1 - Logo + About */}
-          <div className="footer-col">
-            <img
-              src={logoSrc}
-              alt="1 Global Enterprises Logo"
-              className="footer-logo"
-            />
-
-            <p className="footer-text">
-              1 Global Enterprises Pte Ltd is a{" "}
-              <span className="nowrap">Singapore&#8209;headquartered</span>{" "}
-              business group with diversified interests spanning shipping,
-              logistics and supply chain solutions, product distribution,
-              renewable and clean energy, and global trading.
-            </p>
-
-            <div className="footer-social">
-              <a
-                href={linkedinUrl}
-                aria-label="LinkedIn"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <i className="bi bi-linkedin" />
-              </a>
+        {/* Top CTA Banner Strip */}
+        <div className="footer-cta-strip">
+          <div className="row align-items-center g-4">
+            <div className="col-lg-8">
+              <span className="footer-cta-badge">360° ECOSYSTEM INTEGRATION</span>
+              <h3 className="footer-cta-title">Ready to transform and streamline your business capabilities?</h3>
+              <p className="footer-cta-desc">
+                From a single outsourced process to an enterprise-grade Global Capability Centre — we build the team and workflow around your goals.
+              </p>
             </div>
-          </div>
-
-          {/* Column 2 - Quick Links */}
-          <div className="footer-col">
-            <h4 className="footer-heading">Quick Links</h4>
-            <ul className="footer-links">
-              <li><a href="/">Home</a></li>
-              <li><a href="/about">About Us</a></li>
-              <li><a href="/our-business-verticals">Business Verticals</a></li>
-              <li><a href="/global-presence">Global Presence</a></li>
-            </ul>
-          </div>
-
-          {/* Column 3 - Contact Info */}
-          <div className="footer-col">
-            <h4 className="footer-heading">Contact Us</h4>
-            <p className="footer-text" style={{ whiteSpace: "pre-line" }}>
-              {addressText}
-            </p>
-            <p className="footer-text">
-              <a className="footer-link" href={`mailto:${emailText}`}>{emailText}</a>
-            </p>
-            <p className="footer-text">
-              {phone1Text && (
-                <>
-                  <span
-                    className="footer-link cursor-pointer"
-                    onClick={() => handleCopy(phone1Text)}
-                    title="Click to copy"
-                  >
-                    {phone1Text}
-                  </span><br />
-                </>
-              )}
-              {phone2Text && (
-                <>
-                  <span
-                    className="footer-link cursor-pointer"
-                    onClick={() => handleCopy(phone2Text)}
-                    title="Click to copy"
-                  >
-                    {phone2Text}
-                  </span><br />
-                </>
-              )}
-              {phone3Text && (
-                <span
-                  className="footer-link cursor-pointer"
-                  onClick={() => handleCopy(phone3Text)}
-                  title="Click to copy"
-                >
-                  {phone3Text}
-                </span>
-              )}
-            </p>
+            <div className="col-lg-4 text-lg-end">
+              <Link to="/contact" className="btn-nexora-primary">
+                <span>Start a conversation</span>
+                <ArrowRight size={18} />
+              </Link>
+            </div>
           </div>
         </div>
 
+        {/* Main Footer Columns */}
+        <div className="footer-main">
+          {/* Column 1 - Brand & Positioning */}
+          <div className="footer-col brand-col">
+            <Link to="/" className="footer-logo-link">
+              <img
+                src="/nexora360-logo-white.svg"
+                alt="Nexora360 Global Solutions"
+                className="footer-logo"
+              />
+            </Link>
+            <p className="footer-tagline">One partner. Every business need.</p>
+            <p className="footer-text">
+              A next-generation global business services and capability partner — bringing GCC, BPO, KPO, digital, customer experience, IT, HR, finance and AI & automation together under one integrated ecosystem.
+            </p>
+            <div className="footer-motto-badge">
+              THINK NEXT. EXECUTE BETTER. OPTIMIZE EVERYTHING. DELIVER EXCELLENCE.
+            </div>
+          </div>
+
+          {/* Column 2 - Navigation */}
+          <div className="footer-col">
+            <h4 className="footer-heading">Navigation</h4>
+            <ul className="footer-links">
+              <li><Link to="/"><ArrowRight size={14} className="link-icon" /> Home</Link></li>
+              <li><Link to="/about"><ArrowRight size={14} className="link-icon" /> About Nexora360</Link></li>
+              <li><Link to="/values"><ArrowRight size={14} className="link-icon" /> Our Values (NEXORA)</Link></li>
+              <li><Link to="/capabilities"><ArrowRight size={14} className="link-icon" /> Capability Directory</Link></li>
+              <li><Link to="/the-advantage"><ArrowRight size={14} className="link-icon" /> The 360° Advantage</Link></li>
+              <li><Link to="/contact"><ArrowRight size={14} className="link-icon" /> Contact & Inquiries</Link></li>
+            </ul>
+          </div>
+
+          {/* Column 3 - 360 Ecosystem Highlights */}
+          <div className="footer-col">
+            <h4 className="footer-heading">Ecosystem Verticals</h4>
+            <ul className="footer-links">
+              <li><Link to="/capabilities"><ArrowRight size={14} className="link-icon" /> Global Capability Centres (GCC)</Link></li>
+              <li><Link to="/capabilities"><ArrowRight size={14} className="link-icon" /> Business Process Outsourcing (BPO)</Link></li>
+              <li><Link to="/capabilities"><ArrowRight size={14} className="link-icon" /> Customer Experience & Contact Centre</Link></li>
+              <li><Link to="/capabilities"><ArrowRight size={14} className="link-icon" /> AI & Automation Services</Link></li>
+              <li><Link to="/capabilities"><ArrowRight size={14} className="link-icon" /> Knowledge Process Outsourcing (KPO)</Link></li>
+              <li><Link to="/capabilities"><ArrowRight size={14} className="link-icon" /> HR & Recruitment Solutions</Link></li>
+            </ul>
+          </div>
+
+          {/* Column 4 - Contact Info */}
+          <div className="footer-col contact-col">
+            <h4 className="footer-heading">Get in Touch</h4>
+            <div className="footer-contact-item">
+              <MapPin size={18} className="contact-icon" />
+              <p className="footer-text mb-0" style={{ whiteSpace: "pre-line" }}>
+                {addressText}
+              </p>
+            </div>
+            <div className="footer-contact-item">
+              <Mail size={18} className="contact-icon" />
+              <a className="footer-link" href={`mailto:${emailText}`}>
+                {emailText}
+              </a>
+            </div>
+            <div className="footer-contact-item">
+              <Phone size={18} className="contact-icon" />
+              <a className="footer-link" href={`tel:${phoneText.replace(/\s+/g, '')}`}>
+                {phoneText}
+              </a>
+            </div>
+            <div className="footer-trust-badge mt-3">
+              <ShieldCheck size={16} className="text-danger me-2" />
+              <span>Industry-Agnostic. Globally Focused.</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Footer Bottom */}
         <div className="footer-bottom">
-          <p>{copyrightText}</p>
+          <div className="row align-items-center">
+            <div className="col-md-6 text-center text-md-start mb-2 mb-md-0">
+              <p className="mb-0 copyright-text">{copyrightText}</p>
+            </div>
+            <div className="col-md-6 text-center text-md-end">
+              <span className="footer-accent-text">
+                Red &amp; Orange Powered Enterprise Capability
+              </span>
+            </div>
+          </div>
         </div>
       </div>
 
       <style>{`
-        .footer-section { background:#000; padding:60px 0 30px; color:#fff; }
-        .container { max-width:1200px; margin:0 auto; padding:0 16px; }
-        .footer-main { display:grid; grid-template-columns:1.2fr 0.8fr 1fr; gap:40px; margin-bottom:40px; }
-        @media (max-width:992px){ .footer-main{ grid-template-columns:1fr 1fr; gap:32px; } }
-        @media (max-width:700px){ .footer-main{ grid-template-columns:1fr; gap:24px; } }
-        .footer-col{ min-width:0; }
-        .footer-logo{ max-height:60px; margin-bottom:16px; }
-        .footer-heading{ font-size:20px; font-weight:700; margin:12px 0; color:#fff; }
-        .footer-text{ color:#fff; opacity:.9; line-height:1.7; margin-bottom:12px; overflow-wrap:break-word; hyphens:none; }
-        .nowrap{ white-space:nowrap; }
-        .footer-links{ list-style:none; padding:0; margin:0; }
-        .footer-links li{ margin:8px 0; }
-        .footer-links a, .footer-link{ color:#fff; text-decoration:none; opacity:.9; transition:opacity .25s; }
-        .footer-links a:hover, .footer-link:hover{ opacity:1; }
-        .footer-link.cursor-pointer:hover { text-decoration:underline; }
-        .footer-social a{ display:inline-flex; align-items:center; justify-content:center; width:38px; height:38px; border-radius:50%; background:#111; color:#fff; margin-right:6px; transition:opacity .25s; }
-        .footer-social a:hover{ opacity:.8; }
-        .footer-bottom{ border-top:1px solid rgba(255,255,255,.15); padding-top:20px; font-size:14px; opacity:.9; text-align:center; }
+        .footer-section {
+          background: #0B0F17;
+          padding: 70px 0 30px;
+          color: #fff;
+          position: relative;
+          border-top: 2px solid #DC2626;
+        }
+        .footer-section::before {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          height: 4px;
+          background: linear-gradient(90deg, #DC2626 0%, #FF5722 50%, #F97316 100%);
+        }
+        .footer-cta-strip {
+          background: linear-gradient(135deg, rgba(220, 38, 38, 0.12) 0%, rgba(249, 115, 22, 0.08) 100%);
+          border: 1px solid rgba(220, 38, 38, 0.3);
+          border-radius: 16px;
+          padding: 36px 40px;
+          margin-bottom: 50px;
+          backdrop-filter: blur(8px);
+        }
+        .footer-cta-badge {
+          display: inline-block;
+          font-size: 11px;
+          font-weight: 800;
+          letter-spacing: 1.5px;
+          color: #FF5722;
+          background: rgba(255, 87, 34, 0.15);
+          padding: 4px 12px;
+          border-radius: 9999px;
+          margin-bottom: 12px;
+        }
+        .footer-cta-title {
+          color: #fff;
+          font-weight: 800;
+          font-size: clamp(20px, 2.5vw, 26px);
+          margin-bottom: 8px;
+          line-height: 1.3;
+        }
+        .footer-cta-desc {
+          color: #94A3B8;
+          font-size: 15px;
+          margin-bottom: 0;
+        }
+        .footer-main {
+          display: grid;
+          grid-template-columns: 1.5fr 1fr 1.2fr 1.3fr;
+          gap: 36px;
+          margin-bottom: 44px;
+        }
+        @media (max-width: 1024px) {
+          .footer-main {
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+          }
+        }
+        @media (max-width: 640px) {
+          .footer-main {
+            grid-template-columns: 1fr;
+            gap: 28px;
+          }
+          .footer-cta-strip {
+            padding: 24px 20px;
+          }
+        }
+        .footer-logo {
+          height: 48px;
+          width: auto;
+          margin-bottom: 12px;
+        }
+        .footer-tagline {
+          font-size: 16px;
+          font-weight: 700;
+          color: #FF5722;
+          margin-bottom: 10px;
+        }
+        .footer-heading {
+          font-size: 18px;
+          font-weight: 700;
+          margin-bottom: 18px;
+          color: #fff;
+          position: relative;
+          display: inline-block;
+        }
+        .footer-heading::after {
+          content: "";
+          display: block;
+          width: 28px;
+          height: 3px;
+          background: linear-gradient(90deg, #DC2626, #F97316);
+          border-radius: 2px;
+          margin-top: 6px;
+        }
+        .footer-text {
+          color: #94A3B8;
+          line-height: 1.65;
+          font-size: 14.5px;
+        }
+        .footer-motto-badge {
+          display: inline-block;
+          margin-top: 16px;
+          font-size: 11px;
+          font-weight: 800;
+          letter-spacing: 0.8px;
+          color: #F97316;
+          background: rgba(249, 115, 22, 0.1);
+          border: 1px dashed rgba(249, 115, 22, 0.4);
+          padding: 8px 12px;
+          border-radius: 8px;
+          line-height: 1.4;
+        }
+        .footer-links {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+        }
+        .footer-links li {
+          margin-bottom: 10px;
+        }
+        .footer-links a {
+          color: #CBD5E1;
+          text-decoration: none;
+          font-size: 14.5px;
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          transition: all 0.25s ease;
+        }
+        .footer-links a:hover {
+          color: #FF5722;
+          transform: translateX(4px);
+        }
+        .link-icon {
+          color: #FF5722;
+          opacity: 0.7;
+          transition: transform 0.25s ease;
+        }
+        .footer-links a:hover .link-icon {
+          opacity: 1;
+        }
+        .footer-contact-item {
+          display: flex;
+          align-items: flex-start;
+          gap: 12px;
+          margin-bottom: 14px;
+        }
+        .contact-icon {
+          color: #FF5722;
+          flex-shrink: 0;
+          margin-top: 3px;
+        }
+        .footer-link {
+          color: #CBD5E1;
+          text-decoration: none;
+          font-size: 14.5px;
+          transition: color 0.25s ease;
+        }
+        .footer-link:hover {
+          color: #FF5722;
+          text-decoration: underline;
+        }
+        .footer-trust-badge {
+          display: inline-flex;
+          align-items: center;
+          background: rgba(220, 38, 38, 0.12);
+          border: 1px solid rgba(220, 38, 38, 0.25);
+          padding: 6px 12px;
+          border-radius: 8px;
+          font-size: 12.5px;
+          font-weight: 600;
+          color: #F87171;
+        }
+        .footer-bottom {
+          border-top: 1px solid rgba(255, 255, 255, 0.1);
+          padding-top: 24px;
+          margin-top: 20px;
+        }
+        .copyright-text {
+          color: #94A3B8;
+          font-size: 13.5px;
+        }
+        .footer-accent-text {
+          font-size: 13px;
+          color: #F97316;
+          font-weight: 600;
+        }
       `}</style>
     </footer>
   );

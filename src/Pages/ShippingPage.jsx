@@ -1,44 +1,61 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import BreadCumb from '../Components/Common/BreadCumb';
-import { getNavbarVerticals } from '../utils/navbarVerticalData';
-import useSEO from '../hooks/useSEO';
+import { Link } from 'react-router';
+import { ArrowRight } from 'lucide-react';
 
 const ShippingPage = () => {
-  useSEO('shipping');
-  const [verticalData, setVerticalData] = useState(null);
-
-  useEffect(() => {
-    getNavbarVerticals().then((data) => {
-      if (data) {
-        const matched = data.find((item) => item.url_path === '/shipping');
-        if (matched) {
-          setVerticalData(matched);
-        }
-      }
-    });
-  }, []);
-
-  const title = verticalData?.title || "Shipping";
-  const imageSrc = verticalData?.image_src || "/shipping.png";
-  const contentText = verticalData?.content || "Shipping is the backbone of global trade, moving goods across oceans and connecting markets on every continent. Our shipping services are built on reliability and efficiency, ensuring products reach their destinations on time and in perfect condition.\n\nFrom cargo management to route optimization, we leverage industry-leading technology to provide end-to-end solutions. Our fleet operates under the highest safety standards, and our experienced crews navigate the world's busiest ports with precision.\n\nWe are committed to sustainability, investing in cleaner fuels and modern vessels that reduce emissions. As global demand continues to grow, our shipping division remains dedicated to delivering exceptional service while minimizing environmental impact.";
+  const title = "Global Logistics & Operations Support";
+  const imageSrc = "/aboutbg.png";
+  const contentText = "Nexora360 Global Solutions provides comprehensive outsourced back-office and customer support operations for global logistics, shipping, freight forwarding, and trade enterprises.\n\nOur specialized teams handle customs documentation, bill of lading generation, tracking and tracing, exception management, and carrier reconciliation with 99.8% precision.\n\nWhether you operate regional freight networks or global container supply chains, our dedicated operational pods extend your processing bandwidth without inflating overhead.";
 
   const paragraphs = contentText.split(/\n+/).map(p => p.trim()).filter(Boolean);
 
   return (
-    <div>
+    <div className="nexora-vertical-page">
       <BreadCumb bgimg="/aboutbg.png" Title={title} />
-      <section className="py-5">
-        <div className="container">
-          <img
-            src={imageSrc}
-            alt={title}
-            className="mb-6 w-full h-60 object-cover rounded"
-          />
-          {paragraphs.map((p, idx) => (
-            <p key={idx}>{p}</p>
-          ))}
+      <section className="py-5 bg-white">
+        <div className="container py-lg-4">
+          <div className="row align-items-center g-5 mb-5">
+            <div className="col-lg-6">
+              <img
+                src={imageSrc}
+                alt={title}
+                className="img-fluid rounded-4 shadow-sm border border-danger border-opacity-25"
+              />
+            </div>
+            <div className="col-lg-6">
+              <span className="badge-tag-red mb-2 d-inline-block">OPERATIONS &amp; TRADE BPO</span>
+              <h2 className="display-6 fw-bold mb-3 text-slate-900">
+                Logistics &amp; Trade <span className="text-gradient-nexora">Process Outsourcing</span>
+              </h2>
+              {paragraphs.map((p, idx) => (
+                <p key={idx} className="text-slate-600 mb-3" style={{ fontSize: '15.5px', lineHeight: '1.7' }}>
+                  {p}
+                </p>
+              ))}
+              <div className="mt-4">
+                <Link to="/contact" className="btn-nexora-primary">
+                  <span>Inquire for your operations</span>
+                  <ArrowRight size={16} />
+                </Link>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
+
+      <style>{`
+        .badge-tag-red {
+          font-size: 11px;
+          font-weight: 800;
+          color: #DC2626;
+          background: rgba(220, 38, 38, 0.1);
+          border: 1px solid rgba(220, 38, 38, 0.2);
+          padding: 4px 12px;
+          border-radius: 9999px;
+          letter-spacing: 1px;
+        }
+      `}</style>
     </div>
   );
 };

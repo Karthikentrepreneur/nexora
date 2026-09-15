@@ -12,41 +12,44 @@ export default function Header3({ variant }) {
 
   const isHero = variant === 'header-transparent' && !hasScrolled;
 
-  // ✅ Logo + color swap on scroll
-  const logoSrc = isHero ? (customLogo || '/1global1.png') : '/one-globe.png';
-  const textColor = isHero ? '#fff' : '#000';
-  const bgColor = hasScrolled ? '#fff' : 'transparent';
+  // Logo + color swap on scroll
+  const logoSrc = isHero 
+    ? (customLogo || '/nexora360-logo-white.svg') 
+    : '/nexora360-logo.svg';
+  const textColor = isHero ? '#fff' : '#0F172A';
+  const bgColor = hasScrolled ? '#ffffff' : 'transparent';
 
   const headerStyle = {
     color: textColor,
     backgroundColor: bgColor,
-    transition: 'background-color 0.4s ease, color 0.4s ease',
+    transition: 'background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease',
   };
 
   useEffect(() => {
     getAboutDetails().then((data) => {
-      if (data && data.logo_src) {
+      if (data && data.logo_white_src && isHero) {
+        setCustomLogo(data.logo_white_src);
+      } else if (data && data.logo_src) {
         setCustomLogo(data.logo_src);
       }
     });
-  }, []);
+  }, [isHero]);
 
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollPos = window.scrollY;
       const heroHeight = document.querySelector('.hero-section')?.offsetHeight || 100;
 
-      // make header sticky & visible on scroll
-      if (currentScrollPos > prevScrollPos) {
-        setIsSticky('cs-gescout_sticky'); // scrolling down
+      if (currentScrollPos > prevScrollPos && currentScrollPos > 120) {
+        setIsSticky('cs-gescout_sticky');
       } else if (currentScrollPos !== 0) {
-        setIsSticky('cs-gescout_show cs-gescout_sticky'); // scrolling up
+        setIsSticky('cs-gescout_show cs-gescout_sticky');
       } else {
         setIsSticky('');
       }
 
       setPrevScrollPos(currentScrollPos);
-      setHasScrolled(currentScrollPos > heroHeight * 0.1); // activates early
+      setHasScrolled(currentScrollPos > heroHeight * 0.1 || currentScrollPos > 60);
     };
 
     handleScroll();
@@ -56,18 +59,20 @@ export default function Header3({ variant }) {
 
   return (
     <div>
-      {/* Inline CSS for logo responsiveness */}
       <style>{`
         .cs_site_branding img {
-          height: clamp(40px, 5vw, 64px);
+          height: clamp(38px, 4.5vw, 54px);
           width: auto;
           display: block;
           object-fit: contain;
-          transition: height 0.3s ease;
+          transition: height 0.3s ease, transform 0.3s ease;
+        }
+        .cs_site_branding:hover img {
+          transform: scale(1.02);
         }
         .cs_sticky_header .cs_site_branding img,
         .cs-gescout_sticky .cs_site_branding img {
-          height: clamp(34px, 4.2vw, 56px);
+          height: clamp(34px, 4vw, 48px);
         }
         .cs_main_header_left .cs_site_branding {
           display: inline-flex;
@@ -75,11 +80,45 @@ export default function Header3({ variant }) {
           line-height: 0;
         }
         header.cs_site_header {
-          transition: background-color 0.4s ease, box-shadow 0.4s ease;
+          transition: background-color 0.35s ease, box-shadow 0.35s ease;
         }
         header.cs_site_header.scrolled {
-          background-color: #fff !important;
-          box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+          background-color: #ffffff !important;
+          box-shadow: 0 4px 20px rgba(15, 23, 42, 0.08);
+          border-bottom: 1px solid rgba(220, 38, 38, 0.1);
+        }
+        .header-btn .theme-btn {
+          background: linear-gradient(135deg, #DC2626 0%, #FF5722 50%, #F97316 100%) !important;
+          color: #fff !important;
+          padding: 12px 26px !important;
+          min-width: auto !important;
+          font-size: 14.5px !important;
+          font-weight: 700 !important;
+          box-shadow: 0 4px 14px rgba(220, 38, 38, 0.3) !important;
+          border-radius: 9999px !important;
+          transition: all 0.3s ease !important;
+        }
+        .header-btn .theme-btn:hover {
+          background: linear-gradient(135deg, #B91C1C 0%, #EA580C 100%) !important;
+          transform: translateY(-2px);
+          box-shadow: 0 6px 20px rgba(220, 38, 38, 0.45) !important;
+        }
+        @media (max-width: 991px) {
+          .cs_nav .cs_nav_list {
+            background: #ffffff;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+            border-radius: 12px;
+            padding: 16px 20px;
+          }
+          .cs_nav .cs_nav_list li a {
+            color: #0F172A !important;
+            padding: 10px 0;
+            display: block;
+            font-weight: 600;
+          }
+          .cs_nav .cs_nav_list li a:hover {
+            color: #DC2626 !important;
+          }
         }
       `}</style>
 
@@ -96,19 +135,20 @@ export default function Header3({ variant }) {
           <div className="container">
             <div className="cs_main_header_in">
               
-              {/* Left: Logo */}
+              {/* Left: Nexora360 Logo */}
               <div className="cs_main_header_left">
-                <Link className="cs_site_branding" to="/">
-                  <img src={logoSrc} alt="Logo" />
+                <Link className="cs_site_branding" to="/" aria-label="Nexora360 Home">
+                  <img src={logoSrc} alt="Nexora360 Global Solutions" />
                 </Link>
               </div>
 
-              {/* Center: Navigation */}
+              {/* Center: Navigation Links */}
               <div className="cs_main_header_center">
                 <div className="cs_nav cs_primary_font fw-medium">
                   <span
                     className={mobileToggle ? 'cs-munu_toggle cs_teggle_active' : 'cs-munu_toggle'}
                     onClick={() => setMobileToggle(!mobileToggle)}
+                    aria-label="Toggle Navigation Menu"
                   >
                     <span></span>
                   </span>
@@ -116,17 +156,17 @@ export default function Header3({ variant }) {
                 </div>
               </div>
 
-              {/* Right: Button */}
+              {/* Right: Get In Touch CTA Button */}
               <div className="cs_main_header_right">
                 <div className="header-btn d-flex align-items-center">
                   <div className="main-button">
                     <Link 
-                      to="/global-presence" 
+                      to="/contact" 
                       className="theme-btn" 
                       style={{ color: "#fff" }}
                     >
                       <span>
-                        Global Presence <i className="bi bi-arrow-right"></i>
+                        Get in touch <i className="bi bi-arrow-right"></i>
                       </span>
                     </Link>
                   </div>
@@ -138,8 +178,8 @@ export default function Header3({ variant }) {
         </div>
       </header>
 
-      {/* spacing to offset fixed header */}
-      <div className="cs_site_header_spacing_140"></div>
+      {/* Spacing offset for fixed header on subpages */}
+      {!isHero && <div className="cs_site_header_spacing_140" style={{ height: '90px' }}></div>}
     </div>
   );
 }

@@ -2,17 +2,17 @@ import { addLog, isApiAvailable } from './adminData';
 
 const DEFAULT_LEADERSHIP = {
   block_1_title: 'Our People, Our Strength',
-  block_1_desc: 'At 1 Global Enterprises, our greatest strength is our people. Across every division and region, it is the passion, creativity, and commitment of our employees that turn ideas into real impact. Their dedication drives innovation, builds trust with our partners, and fuels the progress that defines who we are as a company.',
-  block_2_title: 'Leadership That Empowers',
-  block_2_desc: 'JP, the Managing Director and Founder of 1 Global Enterprises, believes that true leadership begins with empowering others. He attributes the company’s growth and success to the collective effort of a talented and diverse team that shares a common purpose — creating meaningful progress for our people and our customers.',
+  block_1_desc: 'At Nexora360 Global Solutions, our greatest strength is our people. Experienced professionals who continuously look for opportunities to improve process, productivity and customer experience across our global capability centres and operational hubs.',
+  block_2_title: 'Integrated Ecosystem Governance',
+  block_2_desc: "Businesses shouldn't need multiple partners for multiple functions. From supporting a single business function to managing complete outsourced operations, our leadership designs solutions around the unique requirements of every client.",
   block_3_title: 'Vision for Lasting Impact',
-  block_3_desc: 'Under JP’s guidance, 1 Global Enterprises has evolved into a group of businesses spanning renewable energy, sustainable supply chain solutions, software innovation, and responsible product distribution. His vision proves that commercial excellence and social responsibility can coexist — empowering communities, advancing cleaner technologies, and creating lasting value for generations to come through collaboration and having a long term vision.',
-  founder_img: '/founder.jpg',
-  founder_name: 'Mr. Jay Prakash',
-  founder_title: 'Managing Director & Founder',
+  block_3_desc: "To be the world's trusted 360° business capability partner, enabling organizations to operate smarter, scale faster and grow stronger. Industry-agnostic and globally focused, we build customized solutions rather than forcing clients into a standard outsourcing model.",
+  founder_img: '/aboutbg.png',
+  founder_name: 'Nexora360 Leadership Pod',
+  founder_title: 'Global Capability & Operations',
 };
 
-const LOCAL_STORAGE_KEY = '__1ge_leadership';
+const LOCAL_STORAGE_KEY = '__nexora360_leadership';
 const API_URL = '/api/index.php';
 
 async function apiRequest(action, data = null, method = 'POST') {
@@ -42,7 +42,6 @@ export const getLeadershipDetails = async () => {
     return apiRes.data;
   }
 
-  // Local Storage Fallback
   const stored = localStorage.getItem(LOCAL_STORAGE_KEY);
   if (!stored) {
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(DEFAULT_LEADERSHIP));
@@ -56,13 +55,12 @@ export const getLeadershipDetails = async () => {
 };
 
 export const updateLeadershipDetails = async (leadershipData) => {
-  addLog('Leadership Details Modified', 'About Us leadership and founder profile details updated.');
+  addLog('Leadership Details Modified', 'About Us leadership and profile details updated.');
   const apiRes = await apiRequest('update_leadership', leadershipData, 'POST');
   if (apiRes && apiRes.success) {
     return true;
   }
 
-  // Local Storage Fallback
   localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(leadershipData));
   return true;
 };
